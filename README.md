@@ -1,4 +1,4 @@
-# Fin-Buddy
+# FinBuddy
 
 **Fin-Buddy** is a web-based application designed to manage financial data effectively.
 
@@ -9,6 +9,8 @@
 ### Step 1: Fork the Repository
 
 - Click the **Fork** button on the top-right corner of this repository's page to create your fork.
+  ![image](https://github.com/user-attachments/assets/83d83e4d-c88e-46df-9b25-a3ddd6053556)
+
 
 
 ### Step 2: Clone the Repository
