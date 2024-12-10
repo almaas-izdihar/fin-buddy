@@ -1,7 +1,7 @@
 
 <?php
 $host = '127.0.0.1';
-$db   = 'pocket_path';
+$db   = 'fin_buddy';
 $user = 'root'; // Default XAMPP username
 $pass = '';     // Default XAMPP password
 $charset = 'utf8mb4';
