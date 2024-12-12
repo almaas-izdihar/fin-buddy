@@ -1,4 +1,4 @@
-const toggleButton = document.getElementById('toogle-btn');
+const toggleButton = document.getElementById('toggle-btn');
 const sidebar = document.getElementById('sidebar');
 
 function toggleSidebar() {
@@ -8,8 +8,6 @@ function toggleSidebar() {
   closeAllSubMenus()
 }
 
-/*************  ✨ Codeium Command ⭐  *************/
-/******  884d09d4-a0fc-4fe8-a376-a08c29aab0ee  *******/
 function toggleSubMenu(button){
 
   if(!button.nextElementSibling.classList.contains('show')){
