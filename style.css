@@ -16,9 +16,7 @@ html{
   line-height: 1.5rem;
 }
 body{
-  min-height: 100vh;
-  min-height: 100dvh;
-  background-color: var(--base-clr);
+  background-color: #ECECEC;
   color: var(--text-clr);
   display: grid;
   grid-template-columns: auto 1fr;
@@ -132,25 +130,150 @@ main p{
   margin-top: 5px;
   margin-bottom: 15px;
 }
-.container1{
-  border: 1px solid var(--line-clr);
+.container{
   border-radius: 0px;
   padding: min(3em, 15%);
-  background-color: whitesmoke;
-  h2, p { margin-top: 1em }
+  background-color: #ECECEC;
+  h2, p { margin-top: 1em };
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  height: fit-content;
+}
+.card{
+  border-radius: .5em;
+  background-color: white;
+  margin-top: 80px;
+  padding: 20px;
+  padding-top: -20px;
+  align-items: center;
+  transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+  display: relative;
+}
+.card-title{
+  font-size: 25px;
+  display:block;
 }
 
-.container2{
-  border: 1px solid var(--line-clr);
-  border-radius: 1em;
-  margin-bottom: 20px;
-  margin-top: 20px;
-  padding: min(3em, 15%);
+.card-subtitle{
+  position:relative;
+  font-size: 25px;
+  font-weight:500;
+  margin-top: 8px;
+}
+
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Membagi menjadi 3 kolom sama rata */
+  gap: 20px; /* Jarak antar kartu */
+  margin-top: -60px;
+}
+
+.card-container .card {
+  border-radius: .5em;
   background-color: white;
-  h2, p { margin-top: 1em }
+  padding: 20px;
+  padding-top: -20px;
+  align-items: center;
+  display: flex;
+  flex-direction: column; /* Ensure content is stacked within each card */
+}
+
+
+.username{
+  font-size: 80px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.page-title{
+  font-size: 80px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.hover-card:hover {
+  transform: translateY(-5px);
+  color: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  background-color: var(--accent-clr);
+}
+
+.hover-card:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.register-container {
+  justify-content: center;
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 1000px;
+  align-content: center;
+  margin: 10px;
+}
+.register-container h1 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  text-align: center;
+}
+
+.login-container {
+  justify-content: center;
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 1000px;
+  align-content: center;
+  margin: 10px;
+}
+.login-container h1 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  text-align: center;
+}
+.form-group {
+  margin-bottom: 15px;
+}
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+.form-group input {
+  display: block;
+  width: 98%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+.form-group input:focus {
+  outline: none;
+  border-color: #007bff;
+}
+.submit-btn {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: var(--accent-clr);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+}
+.submit-btn:hover {
+  background-color: var(--hover-clr);
 }
 
 @media(max-width: 800px){
+  .card-container {
+    grid-template-columns: 1fr; /* Stack cards vertically on smaller screens */
+  }
   body{
     grid-template-columns: 1fr;
   }
