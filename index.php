@@ -1,132 +1,104 @@
-<!doctype html>
+<?php 
+    session_start();
+?>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>
-		<?php
-		echo htmlspecialchars($_GET['page'] ?? 'FinBuddy');  // Sanitize output
-		?>
-	</title>
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-	<link href="./style.css" rel="stylesheet">
-	<link rel="stylesheet" href="./modules/chart-php/examples/chart.css">
-	<script src="./modules/chart-php/examples/ChartJS.min.js"></script>
-
+	<link rel="stylesheet" href="chart/examples/chart.css">
+	<script src="chart/examples/ChartJS.min.js"></script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1,0">
+	<title>Home</title>
+	<link rel="stylesheet" href="style.css">
+	<script type="text/javascript" src="app.js" defer></script>
 </head>
+<body>
+	<nav id="sidebar">
+		<ul>
+			<li>
+			<span class="logo">FinBuddy</span>
+        <button onclick=toggleSidebar() id="toggle-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="m313-480 155 156q11 11 11.5 27.5T468-268q-11 11-28 11t-28-11L228-452q-6-6-8.5-13t-2.5-15q0-8 2.5-15t8.5-13l184-184q11-11 27.5-11.5T468-692q11 11 11 28t-11 28L313-480Zm264 0 155 156q11 11 11.5 27.5T732-268q-11 11-28 11t-28-11L492-452q-6-6-8.5-13t-2.5-15q0-8 2.5-15t8.5-13l184-184q11-11 27.5-11.5T732-692q11 11 11 28t-11 28L577-480Z"/></svg>
+        </button>
+			</li>
+			<li>
+				<a href="?page=dashboard">
+					<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M520-640v-160q0-17 11.5-28.5T560-840h240q17 0 28.5 11.5T840-800v160q0 17-11.5 28.5T800-600H560q-17 0-28.5-11.5T520-640ZM120-480v-320q0-17 11.5-28.5T160-840h240q17 0 28.5 11.5T440-800v320q0 17-11.5 28.5T400-440H160q-17 0-28.5-11.5T120-480Zm400 320v-320q0-17 11.5-28.5T560-520h240q17 0 28.5 11.5T840-480v320q0 17-11.5 28.5T800-120H560q-17 0-28.5-11.5T520-160Zm-400 0v-160q0-17 11.5-28.5T160-360h240q17 0 28.5 11.5T440-320v160q0 17-11.5 28.5T400-120H160q-17 0-28.5-11.5T120-160Zm80-360h160v-240H200v240Zm400 320h160v-240H600v240Zm0-480h160v-80H600v80ZM200-200h160v-80H200v80Zm160-320Zm240-160Zm0 240ZM360-280Z"/></svg>
+					<span>Dashboard</span>
+				</a>
+			</li>
+			<li>
+				<a href="?page=income">
+					<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M704-200 532-372q-11-11-11.5-27.5T531-428q11-12 28-12t29 12l172 172v-144q0-17 11.5-28.5T800-440q17 0 28.5 11.5T840-400v240q0 17-11.5 28.5T800-120H560q-17 0-28.5-11.5T520-160q0-17 11.5-28.5T560-200h144ZM240-320h-80q-17 0-28.5-11.5T120-360q0-17 11.5-28.5T160-400h200v-120H200q-33 0-56.5-23.5T120-600v-120q0-33 23.5-56.5T200-800h40q0-17 11.5-28.5T280-840q17 0 28.5 11.5T320-800h80q17 0 28.5 11.5T440-760q0 17-11.5 28.5T400-720H200v120h160q33 0 56.5 23.5T440-520v120q0 33-23.5 56.5T360-320h-40q0 17-11.5 28.5T280-280q-17 0-28.5-11.5T240-320Z"/></svg>
+					<span>Incomes</span>
+				</a>
+			</li>
+			<li>
+				<button onclick=toggleSubMenu(this) class="dropdown-btn">
+					<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h207q16 0 30.5 6t25.5 17l57 57h320q33 0 56.5 23.5T880-640v400q0 33-23.5 56.5T800-160H160Zm0-80h640v-400H447l-80-80H160v480Zm0 0v-480 480Zm400-160v40q0 17 11.5 28.5T600-320q17 0 28.5-11.5T640-360v-40h40q17 0 28.5-11.5T720-440q0-17-11.5-28.5T680-480h-40v-40q0-17-11.5-28.5T600-560q-17 0-28.5 11.5T560-520v40h-40q-17 0-28.5 11.5T480-440q0 17 11.5 28.5T520-400h40Z"/></svg>
+					<span>Add</span>
+					<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M480-361q-8 0-15-2.5t-13-8.5L268-556q-11-11-11-28t11-28q11-11 28-11t28 11l156 156 156-156q11-11 28-11t28 11q11 11 11 28t-11 28L508-372q-6 6-13 8.5t-15 2.5Z"/></svg>
+				</button>
+				<ul class="sub-menu">
+					<div>
+						<li><a href="?page=newIncome">New Income Source</a></li>
+						<li><a href="?page=newBudget">New Budgets</a></li>
+						<li><a href="?page=newExpense">New Expense</a></li>
+					</div>
+				</ul>
+			</li>
+			<li>
+				<a href="?page=budget">
+					<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M200-200v-560 560Zm0 80q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v100h-80v-100H200v560h560v-100h80v100q0 33-23.5 56.5T760-120H200Zm320-160q-33 0-56.5-23.5T440-360v-240q0-33 23.5-56.5T520-680h280q33 0 56.5 23.5T880-600v240q0 33-23.5 56.5T800-280H520Zm280-80v-240H520v240h280Zm-160-60q25 0 42.5-17.5T700-480q0-25-17.5-42.5T640-540q-25 0-42.5 17.5T580-480q0 25 17.5 42.5T640-420Z"/></svg>
+					<span>Budget</span>
+				</a>
+			</li>
+			<li>
+				<a href="?page=expense">
+					<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M560-440q-50 0-85-35t-35-85q0-50 35-85t85-35q50 0 85 35t35 85q0 50-35 85t-85 35ZM280-320q-33 0-56.5-23.5T200-400v-320q0-33 23.5-56.5T280-800h560q33 0 56.5 23.5T920-720v320q0 33-23.5 56.5T840-320H280Zm80-80h400q0-33 23.5-56.5T840-480v-160q-33 0-56.5-23.5T760-720H360q0 33-23.5 56.5T280-640v160q33 0 56.5 23.5T360-400Zm400 240H120q-33 0-56.5-23.5T40-240v-400q0-17 11.5-28.5T80-680q17 0 28.5 11.5T120-640v400h640q17 0 28.5 11.5T800-200q0 17-11.5 28.5T760-160ZM280-400v-320 320Z"/></svg>
+					<span>Expenses</span>
+				</a>
+			</li>
+			<li>
+			<button onclick=toggleSubMenu(this) class="dropdown-btn">
+					<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M480-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM160-240v-32q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q29 15 46.5 43.5T800-272v32q0 33-23.5 56.5T720-160H240q-33 0-56.5-23.5T160-240Zm80 0h480v-32q0-11-5.5-20T700-306q-54-27-109-40.5T480-360q-56 0-111 13.5T260-306q-9 5-14.5 14t-5.5 20v32Zm240-320q33 0 56.5-23.5T560-640q0-33-23.5-56.5T480-720q-33 0-56.5 23.5T400-640q0 33 23.5 56.5T480-560Zm0-80Zm0 400Z"/></svg>
+					<span>Profile</span>
+					<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M480-361q-8 0-15-2.5t-13-8.5L268-556q-11-11-11-28t11-28q11-11 28-11t28 11l156 156 156-156q11-11 28-11t28 11q11 11 11 28t-11 28L508-372q-6 6-13 8.5t-15 2.5Z"/></svg>
+				</button>
+				<ul class="sub-menu">
+					<div>
+						<li><a href="?page=login">Login</a></li>
+						<li><a href="?page=register">Register</a></li>
+						<li><a href="?page=logout" style="color:tomato">Logout</a></li>
+					</div>
+				</ul>
+			</li>
+		</ul>
+	</nav>
+	<div class="container1">
+        <?php 
+            define("LEWAT_INDEX",true);
 
-<body class="bg-body-secondary">
+            require_once("lib/koneksi.php");
 
-	<svg xmlns="http://www.w3.org/2000/svg" class="d-none">
-		<symbol id="check2" viewBox="0 0 16 16">
-			<path
-				d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
-		</symbol>
-		<symbol id="circle-half" viewBox="0 0 16 16">
-			<path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z" />
-		</symbol>
-		<symbol id="moon-stars-fill" viewBox="0 0 16 16">
-			<path
-				d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z" />
-			<path
-				d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z" />
-		</symbol>
-		<symbol id="sun-fill" viewBox="0 0 16 16">
-			<path
-				d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z" />
-		</symbol>
-	</svg>
+            if(!isset($_GET['page'])){
+                $page = "home";
+                
+                return;
 
-	<svg xmlns="http://www.w3.org/2000/svg" class="d-none">
-		<symbol id="bootstrap" viewBox="0 0 118 94">
-			<title>Bootstrap</title>
-			<path fill-rule="evenodd" clip-rule="evenodd"
-				d="M24.509 0c-6.733 0-11.715 5.893-11.492 12.284.214 6.14-.064 14.092-2.066 20.577C8.943 39.365 5.547 43.485 0 44.014v5.972c5.547.529 8.943 4.649 10.951 11.153 2.002 6.485 2.28 14.437 2.066 20.577C12.794 88.106 17.776 94 24.51 94H93.5c6.733 0 11.714-5.893 11.491-12.284-.214-6.14.064-14.092 2.066-20.577 2.009-6.504 5.396-10.624 10.943-11.153v-5.972c-5.547-.529-8.934-4.649-10.943-11.153-2.002-6.484-2.28-14.437-2.066-20.577C105.214 5.894 100.233 0 93.5 0H24.508zM80 57.863C80 66.663 73.436 72 62.543 72H44a2 2 0 01-2-2V24a2 2 0 012-2h18.437c9.083 0 15.044 4.92 15.044 12.474 0 5.302-4.01 10.049-9.119 10.88v.277C75.317 46.394 80 51.21 80 57.863zM60.521 28.34H49.948v14.934h8.905c6.884 0 10.68-2.772 10.68-7.727 0-4.643-3.264-7.207-9.012-7.207zM49.948 49.2v16.458H60.91c7.167 0 10.964-2.876 10.964-8.281 0-5.406-3.903-8.178-11.425-8.178H49.948z">
-			</path>
-		</symbol>
-	</svg>
-	<!-- <button class="btn btn-outline-secondary" id="sidebarToggle"><i class="bi bi-arrows-expand-vertical"></i></button> -->
+            }
+            $page =  $_GET["page"];
+            $page_to_open = "pages/".$page.".php";
 
-	<aside class="collapse show collapse-horizontal col-sm-2 p-3 border-end bg-body-tertiary d-flex flex-column justify-content-between" id="collapseWidthExample">
-		<div>
-			<a href="?page=dashboard" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
-				<svg class="bi pe-none me-2" width="40" height="32">
-					<use xlink:href="#bootstrap" />
-				</svg>
-				<span class="d-print-block">FinBuddy</span>
-			</a>
-			<hr>
-			<ul class="nav nav-pills flex-column mb-auto">
-				<li>
-					<a href="?page=dashboard" class="nav-link link-body-emphasis">
-						<p class="bi bi-speedometer2" style="position:fixed;">Dashboard</p><br>
-					</a>
-				</li>
-				<li>
-					<a href="?page=incomes" class="nav-link link-body-emphasis">
-						<p class="bi bi-table" style="position:fixed;">Incomes</p><br>
-					</a>
-				</li>
-				<li>
-					<a href="?page=budget" class="nav-link link-body-emphasis">
-						<p class="bi bi-grid" style="position:fixed;">Budget</p><br>
-					</a>
-				</li>
-				<li>
-					<a href="?page=expenses" class="nav-link link-body-emphasis">
-						<p class="bi bi-person-circle" style="position:fixed;">Expenses</p><br>
-					</a>
-				</li>
-			</ul>
-			<hr>
-		</div>
-		<div class="dropdown">
-			<a href="#" class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle"
-				data-bs-toggle="dropdown" aria-expanded="true">
-				<img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
-				<span class="d-print-block"><strong>Anika Visser</strong></span>
-			</a>
-			<ul class="dropdown-menu text-small shadow">
-				<li><a class="dropdown-item" href="#">Profile</a></li>
-				<li>
-					<hr class="dropdown-divider">
-				</li>
-				<li><a class="dropdown-item" href="#">Sign out</a></li>
-			</ul>
-		</div>
-	</aside>
+            //cek esistensi file
+            if(!file_exists($page_to_open)){
+                $page_to_open = "pages/404.php";
+            }
 
-	<main class="col-sm-10 bg-body-tertiary" id="main">
-		<div class="container-fluid my-4">
-			<?php
-			ini_set("display_errors", false);  // Disable error display in production
-			define("LEWAT_INDEX", true);
+            require_once($page_to_open);
+        ?>
 
-			require_once('config/database.php');
-
-			// Define a whitelist of allowed pages
-			$allowed_pages = ['dashboard', 'incomes', 'budget', 'expenses'];
-			$page = isset($_GET['page']) && in_array($_GET['page'], $allowed_pages) ? $_GET['page'] : 'dashboard';
-
-			$page_to_open = "pages/" . $page . ".php";
-
-			// Check if file exists, else redirect to 404
-			if (!file_exists($page_to_open)) {
-				header("Location: 404.php");
-				exit;
-			}
-
-			require_once($page_to_open);
-			?>
-		</div>
-
-	</main>
-
-
-
-
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    </div>
 </body>
-
 </html>
