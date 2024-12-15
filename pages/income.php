@@ -7,7 +7,7 @@ require_once 'lib/koneksi.php';
 // Handle delete request
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['delete_id'])) {
     $delete_id = $_POST['delete_id'];
-    $stmt_delete = $conn->prepare("DELETE FROM incomes WHERE id = ?");
+    $stmt_delete = $conn->prepare("UPDATE incomes SET soft_delete = 1 WHERE id = ?");
     $stmt_delete->bind_param("i", $delete_id);
     $stmt_delete->execute();
     $stmt_delete->close();
@@ -18,7 +18,7 @@ $user_id = 1; // Replace with dynamic user ID as needed
 $sql_latest_incomes = "
     SELECT id, description, amount
     FROM incomes
-    WHERE user_id = ?
+    WHERE user_id = ? AND soft_delete = 0
     ORDER BY date DESC
     LIMIT 5;
 ";
@@ -40,7 +40,7 @@ $result = $stmt->get_result();
             </svg>
         </div>
 
-        <!-- Latest Budget Cards -->
+        <!-- Latest Income Cards -->
         <?php while ($row = $result->fetch_assoc()): ?>
         <div class="card hover-card" style="cursor: pointer;">
             <h1 class="card-title" style="margin-top: 80px;"><?php echo htmlspecialchars($row['description']); ?></h1>

@@ -7,7 +7,7 @@ require_once 'lib/koneksi.php';
 // Handle delete request for expenses
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['delete_expense_id'])) {
     $delete_expense_id = $_POST['delete_expense_id'];
-    $stmt_delete_expense = $conn->prepare("DELETE FROM expenses WHERE id = ?");
+    $stmt_delete_expense = $conn->prepare("UPDATE expenses SET soft_delete = 1 WHERE id = ?");
     $stmt_delete_expense->bind_param("i", $delete_expense_id);
     $stmt_delete_expense->execute();
     $stmt_delete_expense->close();
@@ -19,7 +19,7 @@ $sql_latest_expenses = "
     SELECT e.id, e.description, e.amount, b.description AS budget_description
     FROM expenses e
     JOIN budgets b ON e.budget_id = b.id
-    WHERE b.user_id = ?
+    WHERE b.user_id = ? AND e.soft_delete = 0
     ORDER BY e.id DESC
     LIMIT 5;
 ";

@@ -16,7 +16,7 @@
       $sql_total_budget = "
         SELECT SUM(amount) AS total_budget
         FROM budgets
-        WHERE user_id = 1;
+        WHERE soft_delete = 0 AND user_id = 1;
     ";
       $result_total_budget = $conn->query($sql_total_budget);
       $total_budget = $result_total_budget->fetch_assoc()['total_budget'];
@@ -34,7 +34,7 @@
       $sql_total_spent = "
         SELECT SUM(amount) AS total_spent
         FROM expenses
-        WHERE budget_id IN (SELECT id FROM budgets WHERE user_id = 1);
+        WHERE budget_id IN (SELECT id FROM budgets WHERE soft_delete = 0 AND user_id = 1);
     ";
       $result_total_spent = $conn->query($sql_total_spent);
       $total_spent = $result_total_spent->fetch_assoc()['total_spent'];
@@ -52,7 +52,7 @@
       $sql_total_income = "
         SELECT SUM(amount) AS total_income
         FROM incomes
-        WHERE user_id = 1;
+        WHERE soft_delete = 0 AND user_id = 1;
     ";
       $result_total_income = $conn->query($sql_total_income);
       $total_income = $result_total_income->fetch_assoc()['total_income'];
@@ -76,7 +76,7 @@
       $sql_total_budget = "
         SELECT SUM(amount) AS total_budget
         FROM budgets
-        WHERE user_id = 1;
+        WHERE soft_delete = 0 AND user_id = 1;
     ";
       $result_total_budget = $conn->query($sql_total_budget);
       $total_budget = $result_total_budget->fetch_assoc()['total_budget'];
@@ -84,7 +84,7 @@
       $sql_total_spent = "
         SELECT SUM(amount) AS total_spent
         FROM expenses
-        WHERE budget_id IN (SELECT id FROM budgets WHERE user_id = 1);
+        WHERE budget_id IN (SELECT id FROM budgets WHERE soft_delete = 0 AND user_id = 1);
     ";
       $result_total_spent = $conn->query($sql_total_spent);
       $total_spent = $result_total_spent->fetch_assoc()['total_spent'];
@@ -92,7 +92,7 @@
       $sql_total_income = "
         SELECT SUM(amount) AS total_income
         FROM incomes
-        WHERE user_id = 1;
+        WHERE soft_delete = 0 AND user_id = 1;
     ";
       $result_total_income = $conn->query($sql_total_income);
       $total_income = $result_total_income->fetch_assoc()['total_income'];
@@ -129,8 +129,8 @@
       // Query to get total budget and total expenses
       $sql = "
           SELECT 
-              (SELECT SUM(amount) FROM budgets WHERE user_id = 1) AS total_budget,
-              (SELECT SUM(amount) FROM expenses WHERE budget_id IN (SELECT id FROM budgets WHERE user_id = 1)) AS total_expenses;
+              (SELECT SUM(amount) FROM budgets WHERE soft_delete = 0 AND user_id = 1) AS total_budget,
+              (SELECT SUM(amount) FROM expenses WHERE budget_id IN (SELECT id FROM budgets WHERE soft_delete = 0 AND user_id = 1)) AS total_expenses;
       ";
 
       $result = $conn->query($sql);
@@ -169,7 +169,7 @@
       $sql_expenses_by_category = "
           SELECT description, SUM(amount) as total_amount
           FROM expenses
-          WHERE budget_id IN (SELECT id FROM budgets WHERE user_id = 1)
+          WHERE budget_id IN (SELECT id FROM budgets WHERE soft_delete = 0 AND user_id = 1)
           GROUP BY description;
       ";
 

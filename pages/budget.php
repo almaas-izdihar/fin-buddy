@@ -7,7 +7,7 @@ require_once 'lib/koneksi.php';
 // Handle delete request
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['delete_id'])) {
     $delete_id = $_POST['delete_id'];
-    $stmt_delete = $conn->prepare("DELETE FROM budgets WHERE id = ?");
+    $stmt_delete = $conn->prepare("UPDATE budgets SET soft_delete = 1 WHERE id = ?");
     $stmt_delete->bind_param("i", $delete_id);
     $stmt_delete->execute();
     $stmt_delete->close();
@@ -18,7 +18,7 @@ $user_id = 1; // Replace with dynamic user ID as needed
 $sql_latest_budgets = "
     SELECT id, description, amount
     FROM budgets
-    WHERE user_id = ?
+    WHERE user_id = ? AND soft_delete = 0
     ORDER BY id DESC
     LIMIT 5;
 ";
