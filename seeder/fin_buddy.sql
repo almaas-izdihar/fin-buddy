@@ -31,7 +31,8 @@ CREATE TABLE `budgets` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `description` varchar(255) DEFAULT NULL,
-  `amount` decimal(10,2) NOT NULL
+  `amount` decimal(10,2) NOT NULL,
+  `soft_delete` TINYINT(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -55,7 +56,8 @@ CREATE TABLE `expenses` (
   `budget_id` int(11) NOT NULL,
   `date` date NOT NULL,
   `description` varchar(255) DEFAULT NULL,
-  `amount` decimal(10,2) NOT NULL
+  `amount` decimal(10,2) NOT NULL,
+  `soft_delete` TINYINT(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -80,7 +82,8 @@ CREATE TABLE `incomes` (
   `user_id` int(11) NOT NULL,
   `date` date NOT NULL,
   `description` varchar(255) DEFAULT NULL,
-  `amount` decimal(10,2) NOT NULL
+  `amount` decimal(10,2) NOT NULL,
+  `soft_delete` TINYINT(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -104,7 +107,8 @@ CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `name` varchar(100) NOT NULL
+  `name` varchar(100) NOT NULL,
+  `soft_delete` TINYINT(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
