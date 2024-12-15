@@ -1,5 +1,35 @@
-<?php if(defined("LEWAT_INDEX") == false) die("Tidak boleh akses langsung!");?><?php if(defined("LEWAT_INDEX") == false) die("Tidak boleh akses langsung!");?>
+<?php if(defined("LEWAT_INDEX") == false) die("Tidak boleh akses langsung!"); ?>
 
+<?php
+// Include the database connection
+require_once 'lib/koneksi.php';
+
+// Handle delete request
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['delete_id'])) {
+    $delete_id = $_POST['delete_id'];
+    $stmt_delete = $conn->prepare("DELETE FROM budgets WHERE id = ?");
+    $stmt_delete->bind_param("i", $delete_id);
+    $stmt_delete->execute();
+    $stmt_delete->close();
+}
+
+// Fetch the latest budget data
+$user_id = 1; // Replace with dynamic user ID as needed
+$sql_latest_budgets = "
+    SELECT id, description, amount
+    FROM budgets
+    WHERE user_id = ?
+    ORDER BY id DESC
+    LIMIT 5;
+";
+$stmt = $conn->prepare($sql_latest_budgets);
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$result = $stmt->get_result();
+
+// Close the connection
+$conn->close();
+?>
 
 <div class="container">
     <h1 class="page-title">My Budget Streams</h1>
@@ -12,9 +42,15 @@
         </div>
 
         <!-- Latest Budget Card -->
-        <div class="card hover-card" onclick="window.location.href='?page=newIncome';" style="cursor: pointer;">
-            <h1 class="card-title" style="margin-top: 80px;">Home Decor</h1>
-            <h3 class="card-subtitle mb-2 text-muted">Rp. 10.000.000</h3>
+        <?php while ($row = $result->fetch_assoc()): ?>
+        <div class="card hover-card" style="cursor: pointer;">
+            <h1 class="card-title"><?php echo htmlspecialchars($row['description']); ?></h1>
+            <h3 class="card-subtitle mb-2 text-muted">Rp. <?php echo number_format($row['amount'], 0, ',', '.'); ?></h3>
+            <form method="post" style="margin-top: 10px;">
+                <input type="hidden" name="delete_id" value="<?php echo $row['id']; ?>">
+                <button type="submit" class="delete-btn">Delete</button>
+            </form>
         </div>
+        <?php endwhile; ?>
     </div>
 </div>
