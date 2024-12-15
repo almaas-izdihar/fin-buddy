@@ -13,7 +13,7 @@
 
         <!-- Latest Budget Card -->
         <div class="card hover-card" onclick="window.location.href='?page=newIncome';" style="cursor: pointer;">
-            <h1 class="card-title" style="margin-top: 80px; font_size: 100px;">Home Decor</h1>
+            <h1 class="card-title" style="margin-top: 80px;">Home Decor</h1>
             <h3 class="card-subtitle mb-2 text-muted">Rp. 10.000.000</h3>
         </div>
     </div>
