@@ -28,7 +28,6 @@ $stmt->execute();
 $result = $stmt->get_result();
 
 // Close the connection
-$conn->close();
 ?>
 
 <div class="container">
@@ -45,12 +44,29 @@ $conn->close();
 
         <!-- Latest Budget Card -->
         <?php while ($row = $result->fetch_assoc()): ?>
+            <?php
+            // Calculate total expenses for the current budget
+            $stmt_expenses = $conn->prepare("SELECT SUM(amount) as total_expenses FROM expenses WHERE budget_id = ? AND soft_delete = 0");
+            $stmt_expenses->bind_param("i", $row['id']);
+            $stmt_expenses->execute();
+            $stmt_expenses->bind_result($total_expenses);
+            $stmt_expenses->fetch();
+            $stmt_expenses->close();
+
+            // Calculate the percentage of the budget spent
+            $percentage_spent = ($total_expenses / $row['amount']) * 100;
+            ?>
             <div class="card hover-card" style="cursor: pointer;">
                 <h1 class="card-title"><?php echo htmlspecialchars($row['description']); ?></h1>
                 <h3 class="card-subtitle mb-2 text-muted">Rp. <?php echo number_format($row['amount'], 0, ',', '.'); ?></h3>
+                <!-- Progress Bar -->
+                <div class="progress-bar">
+                    <div class="progress" style="width: <?php echo $percentage_spent; ?>%;"></div>
+                </div>
                 <!-- Edit Button -->
                 <a href="?page=editBudget&budget_id=<?php echo $row['id']; ?>" class="edit-btn" style="display: block; margin-top: 10px;">
                     <button>
+
                         Edit
                     </button>
                 </a>

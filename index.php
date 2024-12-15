@@ -10,8 +10,9 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1,0">
 	<title>Home</title>
-	<link rel="stylesheet" href="style.css">
 	<script type="text/javascript" src="app.js" defer></script>
+	<link rel="stylesheet" href="css/style_1.css">
+	<link rel="stylesheet" href="css/style_2.css">
 </head>
 <body>
 	<nav id="sidebar">
