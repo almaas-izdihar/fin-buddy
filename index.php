@@ -70,8 +70,8 @@
                 <div class="col">
                     <p class="alert alert-info">
                         <?php
-                        if (isset($_SESSION['nama']) && $_SESSION['nama'] != "") {
-                            echo 'Welcome, ' . $_SESSION['nama'] . '! <a href="index.php?page=logout" class="btn btn-warning btn-sm">Logout</a>';
+                        if (isset($_SESSION['email']) && $_SESSION['email'] != "") {
+                            echo 'Welcome, ' . $_SESSION['name'] . '! <a href="index.php?page=logout" class="btn btn-warning btn-sm">Logout</a>';
 														$user_id = $_SESSION['user_id'] ?? 0; // Default to 0 or handle as needed
                         } else {
                             echo 'Anda belum login, silakan login <a href="index.php?page=login">disini</a>';
@@ -89,7 +89,7 @@
                     $protected = ['budget', 'dashboard', 'editBudget', 'expense', 'income', 'newBudget', 'newExpense', 'newIncome'];
 
                     // Check if the page is protected
-                    if (in_array($page, $protected) && !isset($_SESSION['nama'])) {
+                    if (in_array($page, $protected) && !isset($_SESSION['email'])) {
                         $page = "login";
                     }
 
