@@ -63,29 +63,46 @@
 			</li>
 		</ul>
 	</nav>
-	<div class="container1">
-        <?php 
-            define("LEWAT_INDEX",true);
+	<div class="container">
+            <div class="row" id="main-display">
+                <div class="col">
+                    <p class="alert alert-info">
+                        <?php
+                        if (isset($_SESSION['nama']) && $_SESSION['nama'] != "") {
+                            echo 'Welcome, ' . $_SESSION['nama'] . '! <a href="index.php?page=logout" class="btn btn-warning btn-sm">Logout</a>';
+														$user_id = $_SESSION['user_id'] ?? 0; // Default to 0 or handle as needed
+                        } else {
+                            echo 'Anda belum login, silakan login <a href="index.php?page=login">disini</a>';
+                        }
+                        ?>
+                    </p>
+                    <?php
+                    define("LEWAT_INDEX", true);
 
-            require_once("lib/koneksi.php");
+                    require_once("lib/koneksi.php");
 
-            if(!isset($_GET['page'])){
-                $page = "home";
-                
-                return;
+                    $page = $_GET['page'] ?? 'dashboard';
 
-            }
-            $page =  $_GET["page"];
-            $page_to_open = "pages/".$page.".php";
+                    // Protected pages
+                    $protected = ['budget', 'dashboard', 'editBudget', 'expense', 'income', 'newBudget', 'newExpense', 'newIncome'];
 
-            //cek esistensi file
-            if(!file_exists($page_to_open)){
-                $page_to_open = "pages/404.php";
-            }
+                    // Check if the page is protected
+                    if (in_array($page, $protected) && !isset($_SESSION['nama'])) {
+                        $page = "login";
+                    }
 
-            require_once($page_to_open);
-        ?>
+                    $page_to_open = "pages/" . $page . ".php";
 
+                    // Check file existence
+                    if (!file_exists($page_to_open)) {
+                        $page_to_open = "pages/404.php";
+                    }
+
+                    require_once($page_to_open);
+                    ?>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 </html>
