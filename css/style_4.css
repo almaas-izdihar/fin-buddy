@@ -1,30 +1,5 @@
 /* Global Styles */
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f4f4f9; /* Warna latar belakang */
-  color: #333;
-}
 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-.page-title {
-  text-align: center;
-  font-size: 2.5rem;
-  margin-bottom: 20px;
-  color: #2c3e50; /* Biru gelap */
-}
-
-.card-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Grid responsif */
-  gap: 20px;
-}
 
 /* Card Styles */
 .card {
@@ -59,7 +34,7 @@ body {
 }
 
 .card:hover .card-title, .card:hover .card-subtitle {
-  color: white; /* Mengubah warna teks menjadi putih saat hover */
+  color: black; /* Mengubah warna teks menjadi putih saat hover */
 }
 
 /* Create Card Style */
@@ -132,114 +107,3 @@ svg {
   background-color: #2980b9; /* Biru lebih gelap */
   transform: scale(1.05);
 }
-
-body {
-  margin: 0; /* Hapus margin default */
-  padding: 0;
-  box-sizing: border-box;
-}
-
-#sidebar {
-  position: fixed; /* Navbar tetap berada di layar */
-  top: 0;
-  left: 0;
-  width: 250px; /* Sesuaikan lebar sidebar */
-  height: 100%; /* Penuh vertikal */
- 
-  color: white;
-  z-index: 1000; /* Pastikan navbar berada di atas konten lain */
-}
-
-.container1 {
-  margin-left: 250px; /* Sesuai lebar sidebar */
-  padding: 20px; /* Tambahkan padding agar konten terlihat rapi */
-}
-
-/* Reset dasar */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Arial, sans-serif;
-}
-
-/* Styling body menggunakan Flexbox */
-body {
-  display: flex; /* Membuat tata letak fleksibel */
-  height: 100vh; /* Tinggi penuh layar */
-  margin: 0;
-}
-
-/* Styling sidebar */
-#sidebar {
-  width: 250px; /* Lebar sidebar */
- 
-  color: #fff; /* Warna teks */
-  height: 100%; /* Tinggi penuh */
-  position: fixed; /* Tetap di kiri layar */
-  left: 0;
-  top: 0;
-  overflow-y: auto; /* Jika konten banyak, munculkan scroll */
-  padding: 20px;
-}
-
-#sidebar h2 {
-  text-align: center;
-  margin-bottom: 20px;
-  font-size: 24px;
-}
-
-#sidebar ul {
-  list-style-type: none; /* Hapus bullet list */
-  padding: 0;
-}
-
-#sidebar ul li {
-  margin: 15px 0;
-}
-
-#sidebar ul li a {
-  text-decoration: none;
-  color: #fff;
-  display: block;
-  padding: 10px;
-  transition: background 0.3s;
-}
-
-#sidebar ul li a:hover {
-  
-  border-radius: 4px;
-}
-
-/* Styling konten utama */
-.container1 {
-  margin-left: 250px; /* Menghindari tumpang tindih dengan sidebar */
-  width: calc(100% - 250px); /* Ambil sisa lebar layar */
-  padding: 20px; /* Jarak konten dari tepi */
-  background-color: #f9f9f9; /* Warna background */
-  overflow-y: auto; /* Scroll jika konten melebihi layar */
-}
-
-.container1 h1 {
-  font-size: 32px;
-  margin-bottom: 20px;
-}
-
-.container1 p {
-  font-size: 18px;
-  line-height: 1.6;
-  color: #333;
-}
-
-/* Responsive untuk layar kecil */
-@media (max-width: 768px) {
-  #sidebar {
-    width: 100px; /* Lebar sidebar dikurangi */
-  }
-  
-  .container1 {
-    margin-left: 100px; /* Sesuaikan margin konten */
-    width: calc(100% - 100px);
-  }
-}
-

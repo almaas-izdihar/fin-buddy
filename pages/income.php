@@ -28,7 +28,7 @@ $stmt->execute();
 $result = $stmt->get_result();
 ?>
 
-<div class="container">
+<div class="container" style="height: 100dvh;">
     <h1 class="page-title">My Income Streams</h1>
 
     <div class="card-container" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; grid-row: 1 / 2; height: 350px;">

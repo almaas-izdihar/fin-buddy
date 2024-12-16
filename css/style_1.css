@@ -141,7 +141,7 @@ main p{
   background-color: #ECECEC;
   padding-bottom: 20px;
   margin-bottom: 20px;
-  height: fit-content;
+  height: 100dvh;
 }
 .card{
   border-radius: .5em;
