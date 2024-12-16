@@ -64,12 +64,8 @@ $result = $stmt->get_result();
                     <div class="progress" style="width: <?php echo $percentage_spent; ?>%;"></div>
                 </div>
                 <!-- Edit Button -->
-                <a href="?page=editBudget&budget_id=<?php echo $row['id']; ?>" class="edit-btn" style="display: block; margin-top: 10px;">
-                    <button>
+                <a href="?page=editBudget&budget_id=<?php echo $row['id']; ?>" class="edit-btn" style="display: block; margin-top: 10px; text-decoration: none; text-align: center;">Edit</a>
 
-                        Edit
-                    </button>
-                </a>
                 <form method="post" style="margin-top: 10px;">
                     <input type="hidden" name="delete_id" value="<?php echo $row['id']; ?>">
                     <button type="submit" class="delete-btn">Delete</button>

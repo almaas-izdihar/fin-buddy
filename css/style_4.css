@@ -118,3 +118,17 @@ svg {
 .create-card:hover svg {
   fill: #3498db; /* Ubah warna saat hover */
 }
+.edit-btn {
+  display: inline-block;
+  background-color: #3498db; /* Warna biru */
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.edit-btn:hover {
+  background-color: #2980b9; /* Biru lebih gelap */
+  transform: scale(1.05);
+}
