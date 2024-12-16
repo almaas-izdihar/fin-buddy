@@ -1,10 +1,10 @@
 <?php if(defined("LEWAT_INDEX") == false) die("Tidak boleh akses langsung!");?>
-<?php if(defined("LEWAT_INDEX") == false) die("Tidak boleh akses langsung!");?><div class="container">
+
 
 <div class="container">
   <div class="login-container">
     <h1>Login</h1>
-    <form action="index.php?page=proses_login" method="GET">
+    <form action="index.php?page=proses_login" method="post">
       <div class="form-group">
         <label for="email">Email</label>
         <input type="email" id="email" name="email" placeholder="Enter your email" required>
