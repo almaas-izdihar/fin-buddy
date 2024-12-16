@@ -13,7 +13,8 @@
 	<script type="text/javascript" src="app.js" defer></script>
 	<link rel="stylesheet" href="css/style_1.css">
 	<link rel="stylesheet" href="css/style_2.css">
-	<link rel="stylesheet" href="css/style_3.css">
+  <link rel="stylesheet" href="css/style_3.css">
+	<link rel="stylesheet" href="css/style_4.css">
 </head>
 <body>
 	<nav id="sidebar">

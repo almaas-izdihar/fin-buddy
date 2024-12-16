@@ -31,7 +31,7 @@ $result = $stmt->get_result();
 <div class="container">
     <h1 class="page-title">My Income Streams</h1>
 
-    <div class="card-container" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; grid-row: 1 / 2; height: 350px;">
+    <div class="card-container" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; grid-row: 1 / 2; height: 350px;">
         <!-- Total Income Card -->
         <div class="card hover-card" onclick="window.location.href='?page=newIncome';" style="cursor: pointer;">
             <h1 class="card-title" style="margin-bottom: 40px; margin-top: 40px;">Create New Income Source</h1>
