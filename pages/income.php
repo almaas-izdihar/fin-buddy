@@ -14,7 +14,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['delete_id'])) {
 }
 
 // Fetch the latest income data
-$user_id = 1; // Replace with dynamic user ID as needed
 $sql_latest_incomes = "
     SELECT id, description, amount
     FROM incomes

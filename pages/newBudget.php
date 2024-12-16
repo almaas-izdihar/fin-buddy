@@ -7,7 +7,7 @@ require_once 'lib/koneksi.php';
 // Check if the form is submitted
 $success = false;
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $user_id = 1; // Replace with dynamic user ID as needed
+    // $user_id = 1; // Replace with dynamic user ID as needed
     $description = $_POST['description'];
     $amount = $_POST['amount'];
 
