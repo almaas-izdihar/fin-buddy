@@ -4,9 +4,12 @@
 // Include the database connection
 require_once 'lib/koneksi.php';
 
-// Fetch budgets for the dropdown
+// Fetch budgets for the dropdown with user_id filter
 $budgets = [];
-$result = $conn->query("SELECT id, description FROM budgets");
+$stmt = $conn->prepare("SELECT id, description FROM budgets WHERE user_id = ? AND soft_delete = 0");
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$result = $stmt->get_result();
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         $budgets[] = $row;
@@ -127,7 +130,6 @@ $conn->close();
                         <?php foreach ($budgets as $budget): ?>
                             <option value="<?php echo $budget['id']; ?>"><?php echo $budget['description']; ?></option>
                         <?php endforeach; ?>
-                        <option value="other">Other</option>
                     </select>
                     <div class="invalid-feedback">Please select a budget.</div>
                 </div>
