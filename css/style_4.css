@@ -1,0 +1,120 @@
+/* Global Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f9; /* Warna latar belakang */
+  color: #333;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.page-title {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #2c3e50; /* Biru gelap */
+}
+
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Grid responsif */
+  gap: 20px;
+}
+
+/* Card Styles */
+.card {
+  background-color: #ffffff; /* Putih */
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Bayangan */
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+  
+}
+
+.card-title, .card-subtitle {
+  transition: color 0.3s ease;
+}
+
+.card-title {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: #34495e; /* Warna teks utama */
+}
+
+.card-subtitle {
+  font-size: 1.2rem;
+  color: #27ae60; /* Hijau */
+  margin-bottom: 15px;
+}
+
+.card:hover .card-title, .card:hover .card-subtitle {
+  color: white; /* Mengubah warna teks menjadi putih saat hover */
+}
+
+/* Create Card Style */
+.create-card {
+  background-color: #ecf0f1; /* Abu-abu muda */
+  border: 2px dashed #bdc3c7; /* Dashed border */
+  cursor: pointer;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.create-card h1 {
+  color: #2980b9; /* Biru */
+  transition: color 0.3s ease;
+}
+
+.create-card:hover {
+  background-color: #d6eaf8; /* Biru muda */
+  border-color: #3498db; /* Biru lebih terang */
+}
+
+.create-card:hover h1 {
+  color: white; /* Ubah warna teks menjadi putih saat hover */
+}
+
+/* Delete Button */
+.delete-btn {
+  background-color: #e74c3c; /* Merah */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease, color 0.3s ease;
+}
+
+.delete-btn:hover {
+  background-color: #c0392b; /* Merah lebih gelap */
+  transform: scale(1.05);
+  color: white; /* Teks berubah menjadi putih saat hover */
+}
+
+.delete-btn:active {
+  background-color: #a93226; /* Merah sangat gelap */
+  transform: scale(0.95);
+}
+
+/* SVG Icon */
+svg {
+  margin-top: 10px;
+  fill: #7f8c8d; /* Warna default */
+  transition: fill 0.3s ease;
+}
+
+.create-card:hover svg {
+  fill: #3498db; /* Ubah warna saat hover */
+}
